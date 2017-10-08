@@ -1,3 +1,3 @@
-# Repository for LPRO course
-Content:
-SideQuestSideQuest 1 w/ extra
+# Repository for LPRO's course
+### Content:
+- Here Be Dragons
