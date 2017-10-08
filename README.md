@@ -1,2 +1,3 @@
-# SQ-1
-SideQuest 1 w/ extra
+# Repository for LPRO course files
+Content:
+SideQuestSideQuest 1 w/ extra
