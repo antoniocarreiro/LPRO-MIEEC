@@ -19,15 +19,6 @@ public class HereBeDragons {
 		}
 	}
 
-	//	public static char NextStep() {
-	//		Scanner reader = new Scanner(System.in);  // Reading from System.in
-	//		System.out.println("Enter a direction: ");
-	//		char step = reader.nextLine().toCharArray()[0];
-	//		reader.close();
-	//		return step;
-	//		
-	//	}
-
 	private void randomKeyPosition(char[][] maze) {
 		
 		Random random = new Random();
@@ -36,7 +27,7 @@ public class HereBeDragons {
 			int randomX = random.nextInt(8) + 1;
 			int randomY = random.nextInt(8) + 1;
 			
-			if(maze[randomX][randomY] == ' ') {
+			if(maze[randomX][randomY] == ' ' && maze[randomX+1][randomY] != 'D' && maze[randomX-1][randomY] != 'D') {
 				maze[randomX][randomY] = 'K';
 				break;
 			}
