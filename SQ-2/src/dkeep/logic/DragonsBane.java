@@ -30,6 +30,7 @@ public class DragonsBane {
 		
 		this.hero = new Hero(this, 1, 1);
 		this.dragon = new Dragon(this, 3, 1);
+		this.sword = new Sword(this, placeSword)
 		
 	}
 
