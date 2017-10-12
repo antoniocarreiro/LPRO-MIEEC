@@ -6,6 +6,7 @@ public class Entity {
 	protected DragonsBane game;
 	protected char title;
 	
+	
 	public Entity() {
 		position = new Position();
 	}
@@ -20,44 +21,41 @@ public class Entity {
 		switch(direction) {
 		case "w":
 			if(position.getX() > 0) {
-				if(maze[position.getX() - 1][position.getY()] != 'X') {
-					maze[position.getX()][position.getY()] = ' ';
+				if(game.getMaze()[position.getX() - 1][position.getY()] != 'X') {
 					position.setX(position.getX()-1);
-					maze[position.getX()][position.getY()] = this.title;
+					return true;
 				}
 			}
-			return false;
+			break;
 
 		case "a":
 			if(position.getY() > 0) {
-				if(maze[position.getX()][position.getY() - 1] != 'X') {
-					maze[position.getX()][position.getY()] = ' ';
+				if(game.getMaze()[position.getX()][position.getY() - 1] != 'X') {
 					position.setY(position.getY()-1);
-					maze[position.getX()][position.getY()] = this.title;
+					return true;
 				}
 			}
-			return false;
+			break;
 
 		case "s":
 			if(position.getX() < 9) {
-				if(maze[position.getX() + 1][position.getY()] != 'X') {
-					maze[position.getX()][position.getY()] = ' ';
+				if(game.getMaze()[position.getX() + 1][position.getY()] != 'X') {
 					position.setX(position.getX()+1);
-					maze[position.getX()][position.getY()] = this.title;
+					return true;
 				}
 			}
 			break;
 
 		case "d":
 			if(position.getY() < 9) {
-				if(maze[position.getX()][position.getY() + 1] != 'X') {
-					maze[position.getX()][position.getY()] = ' ';
+				if(game.getMaze()[position.getX()][position.getY() + 1] != 'X') {
 					position.setY(position.getY()+1);
-					maze[position.getX()][position.getY()] = this.title;
+					return true;
 				}
 			}
 			break;
 		}
+		return false;
 	}
 	
 	public Position getPosition() {
@@ -76,5 +74,12 @@ public class Entity {
 		this.title = title;
 	}
 	
+	public int getX() {
+		return position.getX();
+	}
+
+	public int getY() {
+		return position.getY();
+	}
 	
 }

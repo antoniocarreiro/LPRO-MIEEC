@@ -7,8 +7,8 @@ public class Sword extends Entity {
 		
 	}
 
-	public Sword(int x, int y) {
-		super(x, y, 'S');
+	public Sword(DragonsBane game, Position swordPosition) {
+		super(game, swordPosition.getX(), swordPosition.getY(), 'S');
 		
 	}
 	

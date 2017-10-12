@@ -3,11 +3,11 @@ package dkeep.cli;
 import java.util.Scanner;
 
 import dkeep.logic.DragonsBane;
-import dkeep.logic.Position;
 
 public class UserInteraction {
 	
 	
+	private Scanner s; 
 	public static void main(String[] args) {
 
 		UserInteraction UI = new UserInteraction();
@@ -16,7 +16,7 @@ public class UserInteraction {
 	}
 
 	public String getInput() {
-		Scanner s = new Scanner(System.in);
+		s = new Scanner(System.in);
 		return s.nextLine();
 	}
 	
@@ -31,7 +31,13 @@ public class UserInteraction {
 	
 	public void run(){
 
+		DragonsBane game = new DragonsBane();
 		
+		while(true) {
+			printMaze(game.getPopulatedMaze());
+			game.newTurn(getInput()); 
+		}
+		//s.close();
 		
 	}
 
