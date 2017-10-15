@@ -34,8 +34,12 @@ public class UserInteraction {
 		DragonsBane game = new DragonsBane();
 		
 		while(true) {
-			printMaze(game.getPopulatedMaze());
+			printMaze(game.getMap().getPopulatedMaze());
 			game.newTurn(getInput()); 
+			if(game.checkGameOver()) {
+				System.out.print("Game Over");
+				break;
+			}
 		}
 		//s.close();
 		

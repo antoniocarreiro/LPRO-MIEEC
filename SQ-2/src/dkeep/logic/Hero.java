@@ -1,7 +1,7 @@
 package dkeep.logic;
 
 public class Hero extends Entity {
-
+	
 	public Hero() {
 		super();
 		
@@ -12,6 +12,16 @@ public class Hero extends Entity {
 		
 	}
 	
-
+	public boolean checkArmed() {
+		if(position.getX() == game.sword.getX() && position.getY() == game.sword.getY()) {
+			this.title = 'A';
+			game.sword.pickedUp = true;
+			return true;
+		}
+		
+		return false;
+	}
+	
+	
 	
 }

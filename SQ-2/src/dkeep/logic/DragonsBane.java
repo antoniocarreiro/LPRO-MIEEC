@@ -2,28 +2,21 @@ package dkeep.logic;
 
 import java.util.Random;
 
+import dkeep.logic.Position;
+
 public class DragonsBane {
 
 	protected Hero hero;
 	protected Dragon dragon;
 	protected Sword sword;
 	protected Exit exit;
+	protected Map map;
 	
-	private char[][] maze = {
-			{'X','X','X','X','X','X','X','X','X','X'},
-			{'X',' ',' ',' ',' ',' ',' ',' ',' ','X'},
-			{'X',' ','X','X',' ','X',' ','X',' ','X'},
-			{'X',' ','X','X',' ','X',' ','X',' ','X'},
-			{'X',' ','X','X',' ','X',' ','X',' ','X'},
-			{'X',' ',' ',' ',' ',' ',' ','X',' ',' '},
-			{'X',' ','X','X',' ','X',' ','X',' ','X'},
-			{'X',' ','X','X',' ','X',' ','X',' ','X'},
-			{'X',' ','X','X',' ',' ',' ',' ',' ','X'},
-			{'X','X','X','X','X','X','X','X','X','X'}
-	};
+	protected boolean gameOver = false;
 	
 	public DragonsBane() {
 		
+		this.map = new Map(this);
 		this.hero = new Hero(this, 1, 1);
 		this.dragon = new Dragon(this, 3, 1);
 		this.sword = new Sword(this, randomSwordPosition());
@@ -31,40 +24,46 @@ public class DragonsBane {
 		
 	}
 	
+	public Map getMap() {
+		return map;
+	}
 	
-	public boolean newTurn(String nextStep) {
-		cleanMaze();
-		hero.move(nextStep);
+	public boolean checkGameOver() {
+		return gameOver;
+	}
+	
+	public void newTurn(String nextStep) {
+		map.cleanMaze();
+		if(!hero.move(nextStep))
+			return;
+		hero.checkArmed();
 		dragon.move(getRandomDirection());
-		return true;
+		dragon.satOnSword();
+		checkDuel();		
+	}
+	
+	public void checkDuel() {
+
+		if(checkAdjacent(hero, dragon) && sword.pickedUp)
+			dragon.dragonSlayed = true;
+		else if(checkAdjacent(hero, dragon) && !sword.pickedUp)
+			gameOver = true; 
+	}
+	
+	private boolean checkAdjacent(Entity entity1, Entity entity2) {
+		if((entity1.getX()-1 == entity2.getX() && entity1.getY() == entity2.getY()) ||
+				(entity1.getX()+1 == entity2.getX() && entity1.getY() == entity2.getY()) ||
+				(entity1.getX() == entity2.getX() && entity1.getY()-1 == entity2.getY()) ||
+				(entity1.getX() == entity2.getX() && entity1.getY()+1 == entity2.getY()))
+			return true;
 		
+		return false;
 	}
 	
 	private String getRandomDirection() {
 		String[] direction = {"w", "a", "s", "d"};
 		Random random = new Random();
 		return direction[random.nextInt(4)];
-	}
-	
-	public char[][] getMaze() {
-		return maze;
-	}
-
-	public char[][] getPopulatedMaze() {
-		maze[exit.getX()][exit.getY()] = exit.getTitle();
-		maze[sword.getX()][sword.getY()] = sword.getTitle();
-		maze[hero.getX()][hero.getY()] = hero.getTitle();
-		maze[dragon.getX()][dragon.getY()] = dragon.getTitle();
-		return maze;
-	}
-	
-	private void cleanMaze() {
-		for (int i = 0; i < maze.length; i++) {
-			for (int j = 0; j < maze[i].length; j++) {
-				if(maze[i][j] != 'X')
-					maze[i][j] = ' ';
-			}
-		}
 	}
 
 
@@ -77,7 +76,7 @@ public class DragonsBane {
 			swordPosition.setX(random.nextInt(8) + 1);
 			swordPosition.setY(random.nextInt(8) + 1);
 			
-			if(maze[swordPosition.getX()][swordPosition.getY()] == ' ') {
+			if(map.maze[swordPosition.getX()][swordPosition.getY()] == ' ') {
 				break;
 			}
 		}
