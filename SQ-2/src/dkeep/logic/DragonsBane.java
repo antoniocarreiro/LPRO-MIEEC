@@ -1,24 +1,29 @@
 package dkeep.logic;
 
+import java.util.ArrayList;
 import java.util.Random;
-
-import dkeep.logic.Position;
 
 public class DragonsBane {
 
 	protected Hero hero;
-	protected Dragon dragon;
+	protected ArrayList<Dragon> dragons = new ArrayList<>();
 	protected Sword sword;
 	protected Exit exit;
 	protected Map map;
 	
 	protected boolean gameOver = false;
+	protected int dragonsCount;
 	
-	public DragonsBane() {
-		
+	
+	public DragonsBane(int dragonsCount) {
+		this.dragonsCount = dragonsCount;
 		this.map = new Map(this);
 		this.hero = new Hero(this, 1, 1);
-		this.dragon = new Dragon(this, 3, 1);
+		
+		for(int i = 0; i < dragonsCount; ++i) {
+			this.dragons.add(new Dragon(this, randomDragonPosition()));
+		}
+		
 		this.sword = new Sword(this, randomSwordPosition());
 		this.exit = new Exit(this, 5, 9);
 		
@@ -31,21 +36,35 @@ public class DragonsBane {
 	public boolean checkGameOver() {
 		return gameOver;
 	}
+		
 	
 	public void newTurn(String nextStep) {
 		map.cleanMaze();
 		if(!hero.move(nextStep))
 			return;
 		hero.checkArmed();
-		dragon.move(getRandomDirection());
-		dragon.satOnSword();
-		checkDuel();		
+		for(Dragon dragon : dragons) { 
+			dragon.move(getRandomDirection());
+			dragon.satOnSword();
+			checkDuel(dragon);
+		}
+			
+		
+	}
+
+	public boolean checkWinner() {
+		if(hero.getX() == exit.getX() && hero.getY() == exit.getY() && dragonsCount == 0)
+			return true;
+		return false;
+			
 	}
 	
-	public void checkDuel() {
+	public void checkDuel(Dragon dragon) {
 
-		if(checkAdjacent(hero, dragon) && sword.pickedUp)
+		if(checkAdjacent(hero, dragon) && sword.pickedUp && !dragon.dragonSlayed) {
 			dragon.dragonSlayed = true;
+			dragonsCount--;
+		}
 		else if(checkAdjacent(hero, dragon) && !sword.pickedUp)
 			gameOver = true; 
 	}
@@ -76,7 +95,9 @@ public class DragonsBane {
 			swordPosition.setX(random.nextInt(8) + 1);
 			swordPosition.setY(random.nextInt(8) + 1);
 			
-			if(map.maze[swordPosition.getX()][swordPosition.getY()] == ' ') {
+			if(map.maze[swordPosition.getX()][swordPosition.getY()] == ' '
+			&& swordPosition.getX() != hero.getX()
+			&& swordPosition.getY() != hero.getY()) {
 				break;
 			}
 		}
@@ -84,6 +105,26 @@ public class DragonsBane {
 		return swordPosition;
 	}
 
+	private Position randomDragonPosition() {
+		
+		Position dragonPosition = new Position();
+		Random random = new Random();
+		
+		while(true) {
+			dragonPosition.setX(random.nextInt(8) + 1);
+			dragonPosition.setY(random.nextInt(8) + 1);
+			
+			if(map.maze[dragonPosition.getX()][dragonPosition.getY()] == ' ')
+				if((dragonPosition.getX()-1 != hero.getX() && dragonPosition.getY() != hero.getY()) &&
+						(dragonPosition.getX()+1 != hero.getX() && dragonPosition.getY() != hero.getY()) &&
+						(dragonPosition.getX() != hero.getX() && dragonPosition.getY()-1 != hero.getY()) &&
+						(dragonPosition.getX() != hero.getX() && dragonPosition.getY()+1 != hero.getY()))
+							break;
+		}
+		
+		return dragonPosition;
+	}
+	
 }
 
 

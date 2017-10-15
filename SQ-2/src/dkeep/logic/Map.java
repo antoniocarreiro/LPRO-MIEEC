@@ -32,7 +32,11 @@ public class Map {
 			maze[game.sword.getX()][game.sword.getY()] = game.sword.getTitle();
 		
 		maze[game.hero.getX()][game.hero.getY()] = game.hero.getTitle();
-		maze[game.dragon.getX()][game.dragon.getY()] = game.dragon.getTitle();
+		
+		for(Dragon dragon : game.dragons) {
+			if(!dragon.dragonSlayed)
+			maze[dragon.getX()][dragon.getY()] = dragon.getTitle();
+		}
 		return maze;
 	}
 	

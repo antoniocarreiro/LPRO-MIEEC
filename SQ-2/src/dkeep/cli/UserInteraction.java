@@ -20,6 +20,11 @@ public class UserInteraction {
 		return s.nextLine();
 	}
 	
+	public int getDragons() {
+		s = new Scanner(System.in);
+		return Integer.parseInt(s.nextLine());
+	}	
+	
 	public void printMaze(char[][] maze) {
 		for (int i = 0; i < maze.length; i++) {
 			for (int j = 0; j < maze[i].length; j++) {
@@ -30,14 +35,19 @@ public class UserInteraction {
 	}
 	
 	public void run(){
-
-		DragonsBane game = new DragonsBane();
+		System.out.print("Enter number of dragons: ");
+		DragonsBane game = new DragonsBane(getDragons());
 		
 		while(true) {
 			printMaze(game.getMap().getPopulatedMaze());
-			game.newTurn(getInput()); 
+			game.newTurn(getInput());
 			if(game.checkGameOver()) {
 				System.out.print("Game Over");
+				break;
+			}
+			if(game.checkWinner()) {
+				printMaze(game.getMap().getPopulatedMaze());
+				System.out.print("Winner");
 				break;
 			}
 		}

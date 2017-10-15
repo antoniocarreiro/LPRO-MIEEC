@@ -9,9 +9,16 @@ public class Dragon extends Entity {
 		
 	}
 
-	public Dragon(DragonsBane game, int x, int y) {
-		super(game, x, y, 'D');
+	public Dragon(DragonsBane game, Position dragonPosition) {
+		super(game, dragonPosition.getX(), dragonPosition.getY(), 'D');
 		
+	}
+	
+	@Override
+	protected boolean validMove(int x, int y) {
+		if(game.exit.getX() == x && game.exit.getY() == y)
+			return false;
+		return true;
 	}
 	
 	public void satOnSword() {

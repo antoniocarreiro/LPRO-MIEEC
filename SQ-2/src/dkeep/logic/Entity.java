@@ -17,12 +17,17 @@ public class Entity {
 		this.game = game;
 	}
 	
+	protected boolean validMove(int x, int y) {
+		return true;
+	}
+	
 	public boolean move(String direction) {
 		switch(direction) {
 		case "w":
 			if(position.getX() > 0) {
 				if(game.map.getMaze()[position.getX() - 1][position.getY()] != 'X') {
-					position.setX(position.getX()-1);
+					if(validMove(position.getX() - 1, position.getY()))
+						position.setX(position.getX()-1);
 				}
 				return true;
 			}
@@ -31,7 +36,8 @@ public class Entity {
 		case "a":
 			if(position.getY() > 0) {
 				if(game.map.getMaze()[position.getX()][position.getY() - 1] != 'X') {
-					position.setY(position.getY()-1);
+					if(validMove(position.getX(), position.getY() - 1))
+						position.setY(position.getY()-1);
 				}
 				return true;
 			}
@@ -40,7 +46,8 @@ public class Entity {
 		case "s":
 			if(position.getX() < 9) {
 				if(game.map.getMaze()[position.getX() + 1][position.getY()] != 'X') {
-					position.setX(position.getX()+1);
+					if(validMove(position.getX() + 1, position.getY()))
+						position.setX(position.getX()+1);
 				}
 				return true;
 			}
@@ -49,7 +56,8 @@ public class Entity {
 		case "d":
 			if(position.getY() < 9) {
 				if(game.map.getMaze()[position.getX()][position.getY() + 1] != 'X') {
-					position.setY(position.getY()+1);
+					if(validMove(position.getX(), position.getY() + 1))
+						position.setY(position.getY()+1);
 				}
 				return true;
 			}

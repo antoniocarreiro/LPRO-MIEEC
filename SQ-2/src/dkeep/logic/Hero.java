@@ -22,6 +22,4 @@ public class Hero extends Entity {
 		return false;
 	}
 	
-	
-	
 }
