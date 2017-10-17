@@ -42,6 +42,7 @@ public class UserInteraction {
 			printMaze(game.getMap().getPopulatedMaze());
 			game.newTurn(getInput());
 			if(game.checkGameOver()) {
+				printMaze(game.getMap().getPopulatedMaze());
 				System.out.print("Game Over");
 				break;
 			}
