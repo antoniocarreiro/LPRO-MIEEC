@@ -22,7 +22,7 @@ public class Dragon extends Entity {
 	}
 	
 	public void satOnSword() {
-		if(position.getX() == game.sword.getX() && position.getY() == game.sword.getY()) {
+		if(position.getX() == game.sword.getX() && position.getY() == game.sword.getY() && game.sword.pickedUp == false) {
 			this.title = 'F';
 			game.sword.satOn = true;
 		}

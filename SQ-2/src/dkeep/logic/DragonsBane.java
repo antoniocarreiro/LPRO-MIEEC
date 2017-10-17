@@ -44,7 +44,13 @@ public class DragonsBane {
 			return;
 		hero.checkArmed();
 		for(Dragon dragon : dragons) { 
-			dragon.move(getRandomDirection());
+			Random random = new Random();
+			
+			if(random.nextInt(100) < 20)
+				dragon.position = randomTeleportPosition(dragon);
+			else
+				dragon.move(getRandomDirection());
+			
 			dragon.satOnSword();
 			checkDuel(dragon);
 		}
@@ -62,8 +68,18 @@ public class DragonsBane {
 	public void checkDuel(Dragon dragon) {
 
 		if(checkAdjacent(hero, dragon) && sword.pickedUp && !dragon.dragonSlayed) {
-			dragon.dragonSlayed = true;
-			dragonsCount--;
+
+			Random random = new Random();
+
+			if(random.nextInt(100) < 35) {
+				dragon.position = randomTeleportPosition(dragon);
+				checkDuel(dragon);
+			}
+			else {
+				dragon.dragonSlayed = true;
+				dragonsCount--;
+			}
+
 		}
 		else if(checkAdjacent(hero, dragon) && !sword.pickedUp)
 			gameOver = true; 
@@ -73,7 +89,8 @@ public class DragonsBane {
 		if((entity1.getX()-1 == entity2.getX() && entity1.getY() == entity2.getY()) ||
 				(entity1.getX()+1 == entity2.getX() && entity1.getY() == entity2.getY()) ||
 				(entity1.getX() == entity2.getX() && entity1.getY()-1 == entity2.getY()) ||
-				(entity1.getX() == entity2.getX() && entity1.getY()+1 == entity2.getY()))
+				(entity1.getX() == entity2.getX() && entity1.getY()+1 == entity2.getY()) ||
+				(entity1.getX() == entity2.getX() && entity1.getY() == entity2.getY()))
 			return true;
 		
 		return false;
@@ -125,6 +142,24 @@ public class DragonsBane {
 		return dragonPosition;
 	}
 	
+	
+	private Position randomTeleportPosition(Dragon dragon) {
+
+		Position dragonPosition = new Position();
+		Random random = new Random();
+
+			while(true) {
+				dragonPosition.setX(random.nextInt(8) + 1);
+				dragonPosition.setY(random.nextInt(8) + 1);
+
+				if(map.maze[dragonPosition.getX()][dragonPosition.getY()] == ' ')
+					if(dragonPosition.getX() != hero.getX() && dragonPosition.getY() != hero.getY()
+					&& dragonPosition.getX() != dragon.getX() && dragonPosition.getY() != dragon.getY())
+						break;
+			}
+
+			return dragonPosition;
+	}
 }
 
 
