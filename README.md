@@ -1,4 +1,4 @@
 # Repository for LPRO's course
 ### Content:
 - Here Be Dragons
-- Dragon's Bane (in progress)
+- Dragon's Bane
