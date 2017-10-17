@@ -19,12 +19,13 @@ public class DragonsBane {
 		this.dragonsCount = dragonsCount;
 		this.map = new Map(this);
 		this.hero = new Hero(this, 1, 1);
+		this.sword = new Sword(this, randomSwordPosition());
 		
 		for(int i = 0; i < dragonsCount; ++i) {
 			this.dragons.add(new Dragon(this, randomDragonPosition()));
+			this.dragons.get(i).satOnSword();
 		}
 		
-		this.sword = new Sword(this, randomSwordPosition());
 		this.exit = new Exit(this, 5, 9);
 		
 	}
@@ -132,10 +133,11 @@ public class DragonsBane {
 			dragonPosition.setY(random.nextInt(8) + 1);
 			
 			if(map.maze[dragonPosition.getX()][dragonPosition.getY()] == ' ')
-				if((dragonPosition.getX()-1 != hero.getX() && dragonPosition.getY() != hero.getY()) &&
-						(dragonPosition.getX()+1 != hero.getX() && dragonPosition.getY() != hero.getY()) &&
-						(dragonPosition.getX() != hero.getX() && dragonPosition.getY()-1 != hero.getY()) &&
-						(dragonPosition.getX() != hero.getX() && dragonPosition.getY()+1 != hero.getY()))
+				if(!(dragonPosition.getX()-1 == hero.getX() && dragonPosition.getY() == hero.getY()) &&
+						!(dragonPosition.getX()+1 == hero.getX() && dragonPosition.getY() == hero.getY()) &&
+						!(dragonPosition.getX() == hero.getX() && dragonPosition.getY()-1 == hero.getY()) &&
+						!(dragonPosition.getX() == hero.getX() && dragonPosition.getY()+1 == hero.getY()) &&
+						!(dragonPosition.getX() == hero.getX() && dragonPosition.getY() == hero.getY()))
 							break;
 		}
 		
