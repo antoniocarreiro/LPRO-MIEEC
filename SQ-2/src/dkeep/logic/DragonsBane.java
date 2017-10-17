@@ -14,7 +14,7 @@ public class DragonsBane {
 	protected boolean gameOver = false;
 	protected int dragonsCount;
 	
-	
+	//inicializar as variáveis
 	public DragonsBane(int dragonsCount) {
 		this.dragonsCount = dragonsCount;
 		this.map = new Map(this);
@@ -29,7 +29,7 @@ public class DragonsBane {
 		this.exit = new Exit(this, 5, 9);
 		
 	}
-	
+	//UI
 	public Map getMap() {
 		return map;
 	}
@@ -44,19 +44,22 @@ public class DragonsBane {
 		if(!hero.move(nextStep))
 			return;
 		hero.checkArmed();
-		for(Dragon dragon : dragons) { 
-			Random random = new Random();
-			
-			if(random.nextInt(100) < 20)
-				dragon.position = randomTeleportPosition(dragon);
-			else
-				dragon.move(getRandomDirection());
-			
-			dragon.satOnSword();
-			checkDuel(dragon);
+
+		for(Dragon dragon : dragons) {
+			if(!dragon.dragonSlayed) {
+				Random random = new Random();
+
+				if(random.nextInt(100) < 20)
+					dragon.position = randomTeleportPosition(dragon);
+				else
+					dragon.move(getRandomDirection());
+
+				dragon.satOnSword();
+				checkDuel(dragon);
+			}
 		}
-			
-		
+
+
 	}
 
 	public boolean checkWinner() {
@@ -82,7 +85,7 @@ public class DragonsBane {
 			}
 
 		}
-		else if(checkAdjacent(hero, dragon) && !sword.pickedUp)
+		else if(checkAdjacent(hero, dragon) && !sword.pickedUp && !dragon.dragonSlayed)
 			gameOver = true; 
 	}
 	
