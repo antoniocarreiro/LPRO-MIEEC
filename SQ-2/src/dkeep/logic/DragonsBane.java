@@ -5,7 +5,7 @@ import java.util.Random;
 
 public class DragonsBane {
 
-	protected Hero hero;
+	public Hero hero;
 	protected ArrayList<Dragon> dragons = new ArrayList<>();
 	protected Sword sword;
 	protected Exit exit;
