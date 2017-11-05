@@ -33,15 +33,19 @@ public class PositionTest {
 		DragonsBane game = new DragonsBane(0);
 		assertEquals(1, game.hero.getX());
 		assertEquals(1, game.hero.getY());
+		
 		game.newTurn("s");
 		assertEquals(2, game.hero.getX());
 		assertEquals(1, game.hero.getY());
+		
 		game.newTurn("w");
 		assertEquals(1, game.hero.getX());
 		assertEquals(1, game.hero.getY());
+		
 		game.newTurn("d");
 		assertEquals(1, game.hero.getX());
 		assertEquals(2, game.hero.getY());
+		
 		game.newTurn("a");
 		assertEquals(1, game.hero.getX());
 		assertEquals(1, game.hero.getY());
@@ -52,30 +56,39 @@ public class PositionTest {
 		DragonsBane game = new DragonsBane(0);
 		assertEquals(1, game.hero.getX());
 		assertEquals(1, game.hero.getY());
+		
 		game.newTurn("w");
 		assertEquals(1, game.hero.getX());
 		assertEquals(1, game.hero.getY());
+		
 		game.newTurn("a");
 		assertEquals(1, game.hero.getX());
 		assertEquals(1, game.hero.getY());
+		
 		game.newTurn("s");
 		assertEquals(2, game.hero.getX());
 		assertEquals(1, game.hero.getY());
+		
 		game.newTurn("d");
 		assertEquals(2, game.hero.getX());
 		assertEquals(1, game.hero.getY());
+		
 		game.newTurn("s");
 		assertEquals(3, game.hero.getX());
 		assertEquals(1, game.hero.getY());
+		
 		game.newTurn("s");
 		assertEquals(4, game.hero.getX());
 		assertEquals(1, game.hero.getY());
+		
 		game.newTurn("s");
 		assertEquals(5, game.hero.getX());
 		assertEquals(1, game.hero.getY());
+		
 		game.newTurn("d");
 		assertEquals(5, game.hero.getX());
 		assertEquals(2, game.hero.getY());
+		
 		game.newTurn("s");
 		assertEquals(5, game.hero.getX());
 		assertEquals(2, game.hero.getY());
@@ -93,8 +106,23 @@ public class PositionTest {
 	public void testGameOver() {
 		DragonsBane game = new DragonsBane(65000);
 		assertFalse(game.checkGameOver());
-		game.newTurn("d");
+		game.newTurn("w");
 		assertTrue(game.checkGameOver());
+		
+		DragonsBane game2 = new DragonsBane(65000);
+		assertFalse(game2.checkGameOver());
+		game2.newTurn("a");
+		assertTrue(game2.checkGameOver());
+		
+		DragonsBane game3 = new DragonsBane(65000);
+		assertFalse(game3.checkGameOver());
+		game3.newTurn("s");
+		assertTrue(game3.checkGameOver());
+		
+		DragonsBane game4 = new DragonsBane(65000);
+		assertFalse(game4.checkGameOver());
+		game4.newTurn("d");
+		assertTrue(game4.checkGameOver());
 	}
 
 }
