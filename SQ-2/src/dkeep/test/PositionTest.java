@@ -88,5 +88,13 @@ public class PositionTest {
 		assertTrue(game.sword.pickedUp);
 		assertSame("A", game.hero.getTitle());
 	}
+	
+	@Test
+	public void testGameOver() {
+		DragonsBane game = new DragonsBane(65000);
+		assertFalse(game.checkGameOver());
+		game.newTurn("d");
+		assertTrue(game.checkGameOver());
+	}
 
 }
