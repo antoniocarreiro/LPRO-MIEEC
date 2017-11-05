@@ -28,7 +28,7 @@ public class PositionTest {
 	public void tearDown() throws Exception {
 	}
 
-	@Test
+	@Test //a)
 	public void testHeroToFreeCell() {
 		DragonsBane game = new DragonsBane(0);
 		assertEquals(1, game.hero.getX());
@@ -47,7 +47,7 @@ public class PositionTest {
 		assertEquals(1, game.hero.getY());
 	}
 
-	@Test
+	@Test //b)
 	public void testHeroToWall() {
 		DragonsBane game = new DragonsBane(0);
 		assertEquals(1, game.hero.getX());
@@ -81,7 +81,7 @@ public class PositionTest {
 		assertEquals(2, game.hero.getY());
 	}
 
-	@Test
+	@Test //c)
 	public void testPickUpSword() {
 		DragonsBane game = new DragonsBane(0);
 		game.hero.setPosition(game.sword.getPosition());
@@ -89,7 +89,7 @@ public class PositionTest {
 		assertSame("A", game.hero.getTitle());
 	}
 	
-	@Test
+	@Test //d)
 	public void testGameOver() {
 		DragonsBane game = new DragonsBane(65000);
 		assertFalse(game.checkGameOver());
