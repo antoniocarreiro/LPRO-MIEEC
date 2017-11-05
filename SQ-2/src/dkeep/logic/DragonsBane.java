@@ -6,13 +6,13 @@ import java.util.Random;
 public class DragonsBane {
 
 	public Hero hero;
-	protected ArrayList<Dragon> dragons = new ArrayList<>();
-	protected Sword sword;
-	protected Exit exit;
+	public ArrayList<Dragon> dragons = new ArrayList<>();
+	public Sword sword;
+	public Exit exit;
 	protected Map map;
 	
-	protected boolean gameOver = false;
-	protected int dragonsCount;
+	public boolean gameOver = false;
+	public int dragonsCount;
 	
 	//inicializar as variáveis
 	public DragonsBane(int dragonsCount) {

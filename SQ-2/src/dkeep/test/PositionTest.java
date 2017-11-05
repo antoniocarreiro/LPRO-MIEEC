@@ -81,4 +81,12 @@ public class PositionTest {
 		assertEquals(2, game.hero.getY());
 	}
 
+	@Test
+	public void testPickUpSword() {
+		DragonsBane game = new DragonsBane(0);
+		game.hero.setPosition(game.sword.getPosition());
+		assertTrue(game.sword.pickedUp);
+		assertSame("A", game.hero.getTitle());
+	}
+
 }
