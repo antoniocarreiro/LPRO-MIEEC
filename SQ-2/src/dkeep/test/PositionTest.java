@@ -144,4 +144,27 @@ public class PositionTest {
 		assertEquals(0, game.dragonsCount);
 	}
 	
+	@Test //f)
+	public void testWinner() {
+		DragonsBane game = new DragonsBane(1, 3);
+		assertEquals('H', game.hero.getTitle());
+		assertEquals(1, game.dragonsCount);
+		game.newTurn("d");
+		assertEquals(1, game.hero.getX());
+		assertEquals(2, game.hero.getY());
+		assertEquals('A', game.hero.getTitle());
+		game.newTurn("d");
+		assertEquals(1, game.hero.getX());
+		assertEquals(3, game.hero.getY());
+		assertEquals(0, game.dragonsCount);
+		game.newTurn("s");
+		assertEquals(2, game.hero.getX());
+		assertEquals(3, game.hero.getY());
+		assertFalse(game.checkWinner());
+		game.newTurn("d");
+		assertEquals(2, game.hero.getX());
+		assertEquals(4, game.hero.getY());
+		assertTrue(game.checkWinner());
+	}
+	
 }
