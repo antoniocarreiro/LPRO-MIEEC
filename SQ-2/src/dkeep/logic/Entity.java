@@ -44,7 +44,7 @@ public class Entity {
 			break;
 
 		case "s":
-			if(position.getX() < 9) {
+			if(position.getX() < game.getMap().getMaze().length -1) {
 				if(game.map.getMaze()[position.getX() + 1][position.getY()] != 'X') {
 					if(validMove(position.getX() + 1, position.getY()))
 						position.setX(position.getX()+1);
@@ -54,7 +54,7 @@ public class Entity {
 			break;
 
 		case "d":
-			if(position.getY() < 9) {
+			if(position.getY() < game.getMap().getMaze().length -1) {
 				if(game.map.getMaze()[position.getX()][position.getY() + 1] != 'X') {
 					if(validMove(position.getX(), position.getY() + 1))
 						position.setY(position.getY()+1);

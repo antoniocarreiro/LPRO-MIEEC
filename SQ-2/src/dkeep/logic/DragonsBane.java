@@ -9,15 +9,16 @@ public class DragonsBane {
 	public ArrayList<Dragon> dragons = new ArrayList<>();
 	public Sword sword;
 	public Exit exit;
-	protected Map map;
+	public Map map;
 	
 	public boolean gameOver = false;
 	public int dragonsCount;
 	
 	//inicializar as variáveis
-	public DragonsBane(int dragonsCount) {
+	public DragonsBane(int dragonsCount, int lvl) {
+		
 		this.dragonsCount = dragonsCount;
-		this.map = new Map(this);
+		this.map = new Map(this, lvl);
 		this.hero = new Hero(this, 1, 1);
 		this.sword = new Sword(this, randomSwordPosition());
 		
@@ -25,8 +26,10 @@ public class DragonsBane {
 			this.dragons.add(new Dragon(this, randomDragonPosition()));
 			this.dragons.get(i).satOnSword();
 		}
-		
-		this.exit = new Exit(this, 5, 9);
+		if (lvl == 1)
+			this.exit = new Exit(this, 5, 9);
+		else if (lvl == 2)
+			this.exit = new Exit(this, 2, 4);
 		
 	}
 	//UI
@@ -113,12 +116,12 @@ public class DragonsBane {
 		Random random = new Random();
 		
 		while(true) {
-			swordPosition.setX(random.nextInt(8) + 1);
-			swordPosition.setY(random.nextInt(8) + 1);
+			swordPosition.setX(random.nextInt(getMap().getMaze().length -2) + 1);
+			swordPosition.setY(random.nextInt(getMap().getMaze().length -2) + 1);
 			
 			if(map.maze[swordPosition.getX()][swordPosition.getY()] == ' '
-			&& swordPosition.getX() != hero.getX()
-			&& swordPosition.getY() != hero.getY()) {
+			&& !(swordPosition.getX() == hero.getX()
+			&& swordPosition.getY() == hero.getY())) {
 				break;
 			}
 		}
@@ -132,8 +135,8 @@ public class DragonsBane {
 		Random random = new Random();
 		
 		while(true) {
-			dragonPosition.setX(random.nextInt(8) + 1);
-			dragonPosition.setY(random.nextInt(8) + 1);
+			dragonPosition.setX(random.nextInt(getMap().getMaze().length -2) + 1);
+			dragonPosition.setY(random.nextInt(getMap().getMaze().length -2) + 1);
 			
 			if(map.maze[dragonPosition.getX()][dragonPosition.getY()] == ' ')
 				if(!(dragonPosition.getX()-1 == hero.getX() && dragonPosition.getY() == hero.getY()) &&
@@ -154,8 +157,8 @@ public class DragonsBane {
 		Random random = new Random();
 
 			while(true) {
-				dragonPosition.setX(random.nextInt(8) + 1);
-				dragonPosition.setY(random.nextInt(8) + 1);
+				dragonPosition.setX(random.nextInt(getMap().getMaze().length -2) + 1);
+				dragonPosition.setY(random.nextInt(getMap().getMaze().length -2) + 1);
 
 				if(map.maze[dragonPosition.getX()][dragonPosition.getY()] == ' ')
 					if(dragonPosition.getX() != hero.getX() && dragonPosition.getY() != hero.getY()

@@ -20,7 +20,14 @@ public class UserInteraction {
 		return s.nextLine();
 	}
 	
-	public int getDragons() {
+	public String[] getInitialConditions() {
+		s = new Scanner(System.in);
+		String string = s.nextLine ();
+		String[] values = string.split(" ");
+		return values;
+	}	
+	
+	public int getLevel() {
 		s = new Scanner(System.in);
 		return Integer.parseInt(s.nextLine());
 	}	
@@ -35,8 +42,9 @@ public class UserInteraction {
 	}
 	
 	public void run(){
-		System.out.print("Enter number of dragons: ");
-		DragonsBane game = new DragonsBane(getDragons());
+		System.out.print("Enter number of dragons and level: ");
+		String[] initCond = getInitialConditions();
+		DragonsBane game = new DragonsBane(Integer.valueOf(initCond[0]), Integer.valueOf(initCond[1]));
 		
 		while(true) {
 			printMaze(game.getMap().getPopulatedMaze());

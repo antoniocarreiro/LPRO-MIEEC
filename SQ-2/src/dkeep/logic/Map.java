@@ -4,7 +4,8 @@ public class Map {
 
 	private DragonsBane game;
 	
-	protected char[][] maze = {
+	public char[][] maze;
+	public char[][] lvl1 = {
 			{'X','X','X','X','X','X','X','X','X','X'},
 			{'X',' ',' ',' ',' ',' ',' ',' ',' ','X'},
 			{'X',' ','X','X',' ','X',' ','X',' ','X'},
@@ -17,12 +18,32 @@ public class Map {
 			{'X','X','X','X','X','X','X','X','X','X'}
 	};
 	
-	public Map(DragonsBane game) {	
-		this.game = game;	
+	public char[][] lvl2 = {
+			{'X','X','X','X','X'},
+			{'X',' ',' ','X','X'},
+			{'X','X','X','X',' '},
+			{'X','X','X','X','X'},
+			{'X','X','X','X','X'},
+	};
+	
+	public Map(DragonsBane game, int lvl) {	
+		this.game = game;
+		switch(lvl) {
+			case 1:
+				maze = lvl1;
+				break;
+			case 2:
+				maze = lvl2;
+				break;
+		}
 	}
 	
 	public char[][] getMaze() {
 		return maze;
+	}
+	
+	public char[][] setMaze(char[][] maze) {
+		return this.maze = maze;
 	}
 	
 	public char[][] getPopulatedMaze() {

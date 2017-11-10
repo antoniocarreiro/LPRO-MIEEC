@@ -9,6 +9,8 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import dkeep.logic.DragonsBane;
+import dkeep.logic.Map;
+import dkeep.logic.*;
 
 public class PositionTest {
 
@@ -30,7 +32,7 @@ public class PositionTest {
 
 	@Test //a)
 	public void testHeroToFreeCell() {
-		DragonsBane game = new DragonsBane(0);
+		DragonsBane game = new DragonsBane(0, 1);
 		assertEquals(1, game.hero.getX());
 		assertEquals(1, game.hero.getY());
 		
@@ -53,7 +55,7 @@ public class PositionTest {
 
 	@Test //b)
 	public void testHeroToWall() {
-		DragonsBane game = new DragonsBane(0);
+		DragonsBane game = new DragonsBane(0, 1);
 		assertEquals(1, game.hero.getX());
 		assertEquals(1, game.hero.getY());
 		
@@ -96,30 +98,32 @@ public class PositionTest {
 
 	@Test //c)
 	public void testPickUpSword() {
-		DragonsBane game = new DragonsBane(0);
-		game.hero.setPosition(game.sword.getPosition());
-		assertTrue(game.sword.pickedUp);
-		assertSame("A", game.hero.getTitle());
+		DragonsBane game = new DragonsBane(0, 2);
+		assertEquals('H', game.hero.getTitle());
+		game.newTurn("d");
+		assertEquals(1, game.hero.getX());
+		assertEquals(2, game.hero.getY());
+		assertEquals('A', game.hero.getTitle());
 	}
 	
 	@Test //d)
 	public void testGameOver() {
-		DragonsBane game = new DragonsBane(65000);
+		DragonsBane game = new DragonsBane(65000, 1);
 		assertFalse(game.checkGameOver());
 		game.newTurn("w");
 		assertTrue(game.checkGameOver());
 		
-		DragonsBane game2 = new DragonsBane(65000);
+		DragonsBane game2 = new DragonsBane(65000, 1);
 		assertFalse(game2.checkGameOver());
 		game2.newTurn("a");
 		assertTrue(game2.checkGameOver());
 		
-		DragonsBane game3 = new DragonsBane(65000);
+		DragonsBane game3 = new DragonsBane(65000, 1);
 		assertFalse(game3.checkGameOver());
 		game3.newTurn("s");
 		assertTrue(game3.checkGameOver());
 		
-		DragonsBane game4 = new DragonsBane(65000);
+		DragonsBane game4 = new DragonsBane(65000, 1);
 		assertFalse(game4.checkGameOver());
 		game4.newTurn("d");
 		assertTrue(game4.checkGameOver());
