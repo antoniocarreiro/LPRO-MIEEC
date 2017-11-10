@@ -15,21 +15,35 @@ public class DragonsBane {
 	public int dragonsCount;
 	
 	//inicializar as variáveis
+	
+	public DragonsBane(int dragonsCount) {
+		this(dragonsCount, 1);
+	};
+	
 	public DragonsBane(int dragonsCount, int lvl) {
 		
 		this.dragonsCount = dragonsCount;
 		this.map = new Map(this, lvl);
 		this.hero = new Hero(this, 1, 1);
-		this.sword = new Sword(this, randomSwordPosition());
+		if(lvl == 3)
+			this.sword = new Sword(this, new Position(1, 2));
+		else
+			this.sword = new Sword(this, randomSwordPosition());
 		
-		for(int i = 0; i < dragonsCount; ++i) {
-			this.dragons.add(new Dragon(this, randomDragonPosition()));
-			this.dragons.get(i).satOnSword();
-		}
-		if (lvl == 1)
+		
+		if (lvl == 1) {
+			for(int i = 0; i < dragonsCount; ++i) {
+				this.dragons.add(new Dragon(this, randomDragonPosition()));
+				this.dragons.get(i).satOnSword();
+			}
 			this.exit = new Exit(this, 5, 9);
-		else if (lvl == 2)
+		}
+		else {
+			if(lvl == 3) {
+				this.dragons.add(new Dragon(this, new Position(2, 3), true));
+			}
 			this.exit = new Exit(this, 2, 4);
+		}
 		
 	}
 	//UI
@@ -49,17 +63,20 @@ public class DragonsBane {
 		hero.checkArmed();
 
 		for(Dragon dragon : dragons) {
-			if(!dragon.dragonSlayed) {
-				Random random = new Random();
 
+			if(!dragon.dragonSlayed) {
+				if(!dragon.immovable) {
+				Random random = new Random();
+				
 				if(random.nextInt(100) < 20)
 					dragon.position = randomTeleportPosition(dragon);
 				else
 					dragon.move(getRandomDirection());
-
+				}
 				dragon.satOnSword();
 				checkDuel(dragon);
 			}
+				
 		}
 
 
@@ -78,7 +95,7 @@ public class DragonsBane {
 
 			Random random = new Random();
 
-			if(random.nextInt(100) < 35) {
+			if(random.nextInt(100) < 35 && !dragon.immovable) {
 				dragon.position = randomTeleportPosition(dragon);
 				checkDuel(dragon);
 			}
@@ -130,7 +147,7 @@ public class DragonsBane {
 	}
 
 	private Position randomDragonPosition() {
-		
+		 
 		Position dragonPosition = new Position();
 		Random random = new Random();
 		

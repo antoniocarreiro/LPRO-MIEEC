@@ -95,7 +95,7 @@ public class PositionTest {
 		assertEquals(5, game.hero.getX());
 		assertEquals(2, game.hero.getY());
 	}
-
+ 
 	@Test //c)
 	public void testPickUpSword() {
 		DragonsBane game = new DragonsBane(0, 2);
@@ -129,4 +129,19 @@ public class PositionTest {
 		assertTrue(game4.checkGameOver());
 	}
 
+	@Test //e)
+	public void testDragonSlay() {
+		DragonsBane game = new DragonsBane(1, 3);
+		assertEquals('H', game.hero.getTitle());
+		assertEquals(1, game.dragonsCount);
+		game.newTurn("d");
+		assertEquals(1, game.hero.getX());
+		assertEquals(2, game.hero.getY());
+		assertEquals('A', game.hero.getTitle());
+		game.newTurn("d");
+		assertEquals(1, game.hero.getX());
+		assertEquals(3, game.hero.getY());
+		assertEquals(0, game.dragonsCount);
+	}
+	
 }

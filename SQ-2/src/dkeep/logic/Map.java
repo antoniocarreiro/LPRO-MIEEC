@@ -19,9 +19,17 @@ public class Map {
 	};
 	
 	public char[][] lvl2 = {
-			{'X','X','X','X','X'},
+			{'X','X','X','X','X'}, 
 			{'X',' ',' ','X','X'},
 			{'X','X','X','X',' '},
+			{'X','X','X','X','X'},
+			{'X','X','X','X','X'},
+	};
+	
+	public char[][] lvl3 = {
+			{'X','X','X','X','X'}, 
+			{'X',' ',' ',' ','X'},
+			{'X','X','X',' ',' '},
 			{'X','X','X','X','X'},
 			{'X','X','X','X','X'},
 	};
@@ -34,6 +42,9 @@ public class Map {
 				break;
 			case 2:
 				maze = lvl2;
+				break;
+			case 3:
+				maze = lvl3;
 				break;
 		}
 	}
