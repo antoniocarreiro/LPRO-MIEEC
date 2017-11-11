@@ -142,6 +142,11 @@ public class GUI_Window {
 		frmTheMazeAnd.getContentPane().add(NewGame);
 		
 		JButton btnExit = new JButton("Exit");
+		btnExit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
 		btnExit.setBounds(511, 369, 97, 25);
 		frmTheMazeAnd.getContentPane().add(btnExit);
 		
@@ -151,8 +156,9 @@ public class GUI_Window {
 		
 		btnUp = new JButton("Up");
 		btnUp.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+			public void actionPerformed(ActionEvent e) {
 				dragonsBane.newTurn("w");
+				GameState.setText("Hero's attempt to move Up!");
 				checkGameOver();
 			}
 		});
@@ -160,14 +166,36 @@ public class GUI_Window {
 		frmTheMazeAnd.getContentPane().add(btnUp);
 		
 		btnLeft = new JButton("Left");
+		btnLeft.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				GameState.setText("Hero's attempt to move Left!");
+				dragonsBane.newTurn("a");
+				checkGameOver();
+				
+			}
+		});
 		btnLeft.setBounds(489, 165, 71, 25);
 		frmTheMazeAnd.getContentPane().add(btnLeft);
 		
 		btnRight = new JButton("Right");
+		btnRight.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				GameState.setText("Hero's attempt to move Right!");
+				dragonsBane.newTurn("d");
+				checkGameOver();
+			}
+		});
 		btnRight.setBounds(568, 165, 71, 25);
 		frmTheMazeAnd.getContentPane().add(btnRight);
 		
 		btnDown = new JButton("Down");
+		btnDown.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				GameState.setText("Hero's attempt to move Down!");
+				dragonsBane.newTurn("s");
+				checkGameOver();
+			}
+		});
 		btnDown.setBounds(526, 203, 71, 25);
 		frmTheMazeAnd.getContentPane().add(btnDown);
 		
