@@ -30,7 +30,7 @@ public class LogicTest {
 
 	@Test //a)
 	public void testHeroToFreeCell() {
-		DragonsBane game = new DragonsBane(0, 1);
+		DragonsBane game = new DragonsBane(0, 1, 9999);
 		assertEquals(1, game.hero.getX());
 		assertEquals(1, game.hero.getY());
 		
@@ -53,7 +53,7 @@ public class LogicTest {
 
 	@Test //b)
 	public void testHeroToWall() {
-		DragonsBane game = new DragonsBane(0, 1);
+		DragonsBane game = new DragonsBane(0, 1, 9999);
 		assertEquals(1, game.hero.getX());
 		assertEquals(1, game.hero.getY());
 		
@@ -96,7 +96,7 @@ public class LogicTest {
  
 	@Test //c)
 	public void testPickUpSword() {
-		DragonsBane game = new DragonsBane(0, 2);
+		DragonsBane game = new DragonsBane(0, 2, 9999);
 		assertEquals('H', game.hero.getTitle());
 		game.newTurn("d");
 		assertEquals(1, game.hero.getX());
@@ -106,22 +106,22 @@ public class LogicTest {
 	
 	@Test //d)
 	public void testGameOver() {
-		DragonsBane game = new DragonsBane(65000, 1);
+		DragonsBane game = new DragonsBane(65000, 1, 9999);
 		assertFalse(game.checkGameOver());
 		game.newTurn("w");
 		assertTrue(game.checkGameOver());
 		
-		DragonsBane game2 = new DragonsBane(65000, 1);
+		DragonsBane game2 = new DragonsBane(65000, 1, 9999);
 		assertFalse(game2.checkGameOver());
 		game2.newTurn("a");
 		assertTrue(game2.checkGameOver());
 		
-		DragonsBane game3 = new DragonsBane(65000, 1);
+		DragonsBane game3 = new DragonsBane(65000, 1, 9999);
 		assertFalse(game3.checkGameOver());
 		game3.newTurn("s");
 		assertTrue(game3.checkGameOver());
 		
-		DragonsBane game4 = new DragonsBane(65000, 1);
+		DragonsBane game4 = new DragonsBane(65000, 1, 9999);
 		assertFalse(game4.checkGameOver());
 		game4.newTurn("d");
 		assertTrue(game4.checkGameOver());
@@ -129,7 +129,7 @@ public class LogicTest {
 
 	@Test //e)
 	public void testDragonSlay() {
-		DragonsBane game = new DragonsBane(1, 3);
+		DragonsBane game = new DragonsBane(1, 3, 9999);
 		assertEquals('H', game.hero.getTitle());
 		assertEquals(1, game.dragonsCount);
 		game.newTurn("d");
@@ -144,7 +144,7 @@ public class LogicTest {
 	
 	@Test //f)
 	public void testWinner() {
-		DragonsBane game = new DragonsBane(1, 3);
+		DragonsBane game = new DragonsBane(1, 3, 9999);
 		assertEquals('H', game.hero.getTitle());
 		assertEquals(1, game.dragonsCount);
 		game.newTurn("d");
@@ -167,7 +167,7 @@ public class LogicTest {
 	
 	@Test //g)
 	public void testfailWinnerSword() {
-		DragonsBane game = new DragonsBane(0, 4);
+		DragonsBane game = new DragonsBane(0, 4, 9999);
 		assertEquals('H', game.hero.getTitle());
 		game.newTurn("d");
 		assertEquals(1, game.hero.getX());
@@ -186,7 +186,7 @@ public class LogicTest {
 	
 	@Test //h)
 	public void testfailWinnerDragon() {
-		DragonsBane game = new DragonsBane(1, 5);
+		DragonsBane game = new DragonsBane(1, 5, 9999);
 		assertEquals('H', game.hero.getTitle());
 		assertEquals(1, game.dragonsCount);
 		game.newTurn("d");
@@ -208,7 +208,7 @@ public class LogicTest {
 	
 	@Test //i)
 	public void testTeletransport() {
-		DragonsBane game = new DragonsBane(1, 6);
+		DragonsBane game = new DragonsBane(1, 6, 9999);
 		assertEquals(1, game.dragonsCount);
 			game.newTurn("d");
 			assertEquals(2, game.hero.getX());

@@ -17,10 +17,10 @@ public class DragonsBane {
 	//inicializar as variáveis
 	
 	public DragonsBane(int dragonsCount) {
-		this(dragonsCount, 1);
+		this(dragonsCount, 1, 9999);
 	};
 	
-	public DragonsBane(int dragonsCount, int lvl) {
+	public DragonsBane(int dragonsCount, int lvl, int maxTeleports) {
 		
 		this.dragonsCount = dragonsCount;
 		this.map = new Map(this, lvl);
