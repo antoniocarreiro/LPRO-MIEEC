@@ -2,6 +2,8 @@ package dkeep.logic;
 
 public class Hero extends Entity {
 	
+	public boolean immovable = false;
+	
 	public Hero() {
 		super();
 		
@@ -9,6 +11,12 @@ public class Hero extends Entity {
 
 	public Hero(DragonsBane game, int x, int y) {
 		super(game, x, y, 'H');
+		
+	}
+	
+	public Hero(DragonsBane game, int x, int y, boolean test) {
+		super(game, x, y, 'H');
+		immovable = test;
 		
 	}
 	

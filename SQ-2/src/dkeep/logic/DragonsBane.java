@@ -24,7 +24,10 @@ public class DragonsBane {
 		
 		this.dragonsCount = dragonsCount;
 		this.map = new Map(this, lvl);
-		this.hero = new Hero(this, 1, 1);
+		if (lvl == 6)
+			this.hero = new Hero(this, 2, 4, true);
+		else
+			this.hero = new Hero(this, 1, 1);
 		if(lvl == 3 || lvl == 5)
 			this.sword = new Sword(this, new Position(1, 2));
 		else if(lvl == 4)
@@ -45,6 +48,8 @@ public class DragonsBane {
 				this.dragons.add(new Dragon(this, new Position(2, 3), true));
 			if(lvl == 5)
 				this.dragons.add(new Dragon(this, new Position(3, 1), true));
+			if(lvl == 6)
+				this.dragons.add(new Dragon(this, new Position(1, 1)));
 			this.exit = new Exit(this, 2, 4);
 		}
 		
@@ -61,7 +66,7 @@ public class DragonsBane {
 	
 	public void newTurn(String nextStep) {
 		map.cleanMaze();
-		if(!hero.move(nextStep))
+		if(!hero.move(nextStep) && !hero.immovable)
 			return;
 		hero.checkArmed();
 
@@ -181,8 +186,8 @@ public class DragonsBane {
 				dragonPosition.setY(random.nextInt(getMap().getMaze().length -2) + 1);
 
 				if(map.maze[dragonPosition.getX()][dragonPosition.getY()] == ' ')
-					if(dragonPosition.getX() != hero.getX() && dragonPosition.getY() != hero.getY()
-					&& dragonPosition.getX() != dragon.getX() && dragonPosition.getY() != dragon.getY())
+					if(!(dragonPosition.getX() == hero.getX() && dragonPosition.getY() == hero.getY())
+					&& !(dragonPosition.getX() != dragon.getX() && dragonPosition.getY() != dragon.getY()))
 						break;
 			}
 

@@ -206,4 +206,16 @@ public class LogicTest {
 		assertFalse(game.checkWinner());
 	}
 	
+	@Test //i)
+	public void testTeletransport() {
+		DragonsBane game = new DragonsBane(1, 6);
+		assertEquals(1, game.dragonsCount);
+			game.newTurn("d");
+			assertEquals(2, game.hero.getX());
+			assertEquals(4, game.hero.getY());
+
+			assertEquals(3, game.dragons.get(0).getX());
+			assertEquals(1, game.dragons.get(0).getY());		
+	}
+	
 }

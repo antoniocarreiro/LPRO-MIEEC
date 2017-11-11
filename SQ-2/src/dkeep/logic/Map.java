@@ -44,8 +44,8 @@ public class Map {
 	
 	public char[][] lvl5 = {
 			{'X','X','X','X','X'}, 
-			{'X',' ',' ',' ','X'},
-			{'X','X','X',' ',' '},
+			{'X',' ','X','X','X'},
+			{'X','X','X','X',' '},
 			{'X',' ','X','X','X'},
 			{'X','X','X','X','X'},
 	};
@@ -66,6 +66,9 @@ public class Map {
 				maze = lvl4;
 				break;
 			case 5:
+				maze = lvl4;
+				break;
+			case 6:
 				maze = lvl5;
 				break;
 		};
