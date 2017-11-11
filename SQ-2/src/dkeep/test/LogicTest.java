@@ -213,7 +213,7 @@ public class LogicTest {
 			game.newTurn("d");
 			assertEquals(2, game.hero.getX());
 			assertEquals(4, game.hero.getY());
-
+//
 			assertEquals(3, game.dragons.get(0).getX());
 			assertEquals(1, game.dragons.get(0).getY());		
 	}
