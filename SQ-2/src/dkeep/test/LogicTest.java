@@ -12,7 +12,7 @@ import dkeep.logic.DragonsBane;
 import dkeep.logic.Map;
 import dkeep.logic.*;
 
-public class PositionTest {
+public class LogicTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
