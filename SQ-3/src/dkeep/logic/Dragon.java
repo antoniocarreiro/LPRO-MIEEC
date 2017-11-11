@@ -4,19 +4,22 @@ public class Dragon extends Entity {
 
 	protected boolean dragonSlayed = false;
 	public boolean immovable = false;
+	protected int maxTeleports;
 	
 	public Dragon() {
 		super();
 		
 	}
 
-	public Dragon(DragonsBane game, Position dragonPosition) {
+	public Dragon(DragonsBane game, Position dragonPosition, int nrTeleports) {
 		super(game, dragonPosition.getX(), dragonPosition.getY(), 'D');
+		maxTeleports = nrTeleports;
 		
 	}
 	
-	public Dragon(DragonsBane game, Position dragonPosition, boolean test) {
+	public Dragon(DragonsBane game, Position dragonPosition, int nrTeleports, boolean test) {
 		super(game, dragonPosition.getX(), dragonPosition.getY(), 'D');
+		maxTeleports = nrTeleports;
 		immovable = test;
 	}
 	

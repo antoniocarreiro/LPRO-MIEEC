@@ -13,6 +13,7 @@ public class DragonsBane {
 	
 	public boolean gameOver = false;
 	public int dragonsCount;
+	public int maxTeleports;
 	
 	//inicializar as variáveis
 	
@@ -38,18 +39,18 @@ public class DragonsBane {
 		
 		if (lvl == 1) {
 			for(int i = 0; i < dragonsCount; ++i) {
-				this.dragons.add(new Dragon(this, randomDragonPosition()));
+				this.dragons.add(new Dragon(this, randomDragonPosition(), maxTeleports));
 				this.dragons.get(i).satOnSword();
 			}
 			this.exit = new Exit(this, 5, 9);
 		}
 		else {
 			if(lvl == 3)
-				this.dragons.add(new Dragon(this, new Position(2, 3), true));
+				this.dragons.add(new Dragon(this, new Position(2, 3), maxTeleports, true));
 			if(lvl == 5)
-				this.dragons.add(new Dragon(this, new Position(3, 1), true));
+				this.dragons.add(new Dragon(this, new Position(3, 1), maxTeleports, true));
 			if(lvl == 6)
-				this.dragons.add(new Dragon(this, new Position(1, 1)));
+				this.dragons.add(new Dragon(this, new Position(1, 1), maxTeleports));
 			this.exit = new Exit(this, 2, 4);
 		}
 		
@@ -76,7 +77,7 @@ public class DragonsBane {
 				if(!dragon.immovable) {
 				Random random = new Random();
 				
-				if(random.nextInt(100) < 20)
+				if(random.nextInt(100) < 20 && dragon.maxTeleports > 0)
 					dragon.position = randomTeleportPosition(dragon);
 				else
 					dragon.move(getRandomDirection());
@@ -103,7 +104,7 @@ public class DragonsBane {
 
 			Random random = new Random();
 
-			if(random.nextInt(100) < 35 && !dragon.immovable) {
+			if(random.nextInt(100) < 35 && !dragon.immovable && dragon.maxTeleports > 0) {
 				dragon.position = randomTeleportPosition(dragon);
 				checkDuel(dragon);
 			}
@@ -191,6 +192,7 @@ public class DragonsBane {
 						break;
 			}
 
+			dragon.maxTeleports--;
 			return dragonPosition;
 	}
 }

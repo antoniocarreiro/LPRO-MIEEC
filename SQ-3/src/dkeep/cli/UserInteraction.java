@@ -44,7 +44,7 @@ public class UserInteraction {
 	public void run(){
 		System.out.print("Enter number of dragons and level: ");
 		String[] initCond = getInitialConditions();
-		DragonsBane game = new DragonsBane(Integer.valueOf(initCond[0]), Integer.valueOf(initCond[1]));
+		DragonsBane game = new DragonsBane(Integer.valueOf(initCond[0]), Integer.valueOf(initCond[1]), Integer.valueOf(initCond[2]));
 		
 		while(true) {
 			printMaze(game.getMap().getPopulatedMaze());
