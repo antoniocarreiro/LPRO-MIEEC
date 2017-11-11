@@ -25,6 +25,7 @@ public class GUI_Window {
 	private JButton btnDown;
 	private JLabel GameState;
 	private JLabel Teleports;
+	private JTextArea gameBoard;
 	
 	private int noDragons;
 	private int noLevel;
@@ -150,15 +151,16 @@ public class GUI_Window {
 		btnExit.setBounds(511, 369, 97, 25);
 		frmTheMazeAnd.getContentPane().add(btnExit);
 		
-		JTextArea textArea = new JTextArea();
-		textArea.setBounds(38, 128, 332, 267);
-		frmTheMazeAnd.getContentPane().add(textArea);
+		JTextArea gameBoard = new JTextArea();
+		gameBoard.setBounds(38, 128, 332, 267);
+		frmTheMazeAnd.getContentPane().add(gameBoard);
 		
 		btnUp = new JButton("Up");
 		btnUp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				dragonsBane.newTurn("w");
 				GameState.setText("Hero's attempt to move Up!");
+				dragonsBane.newTurn("w");
+				printMaze(dragonsBane.getMap().getPopulatedMaze());
 				checkGameOver();
 			}
 		});
@@ -170,6 +172,7 @@ public class GUI_Window {
 			public void actionPerformed(ActionEvent e) {
 				GameState.setText("Hero's attempt to move Left!");
 				dragonsBane.newTurn("a");
+				printMaze(dragonsBane.getMap().getPopulatedMaze());
 				checkGameOver();
 				
 			}
@@ -182,6 +185,7 @@ public class GUI_Window {
 			public void actionPerformed(ActionEvent e) {
 				GameState.setText("Hero's attempt to move Right!");
 				dragonsBane.newTurn("d");
+				printMaze(dragonsBane.getMap().getPopulatedMaze());
 				checkGameOver();
 			}
 		});
@@ -193,13 +197,24 @@ public class GUI_Window {
 			public void actionPerformed(ActionEvent e) {
 				GameState.setText("Hero's attempt to move Down!");
 				dragonsBane.newTurn("s");
+				printMaze(dragonsBane.getMap().getPopulatedMaze());
 				checkGameOver();
 			}
 		});
 		btnDown.setBounds(526, 203, 71, 25);
 		frmTheMazeAnd.getContentPane().add(btnDown);
 		
+	}
 	
+	public void printMaze(char[][] maze) {
+		String mazeString = "";
+		for (int i = 0; i < maze.length; i++) {
+			for (int j = 0; j < maze[i].length; j++) {
+				mazeString += maze[i][j] + "  ";
+			}
+			mazeString += "\n";
+		}
+		gameBoard.setText(mazeString);
 	}
 	
 	public void startGame(DragonsBane game) {
@@ -208,7 +223,7 @@ public class GUI_Window {
 		btnLeft.setEnabled(true);
 		btnRight.setEnabled(true);
 		dragonsBane = game;
-		dragonsBane.getMap().getPopulatedMaze();
+		printMaze(dragonsBane.getMap().getPopulatedMaze());
 		GameState.setText("You can now play!");
 	}
 	
