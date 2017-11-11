@@ -34,6 +34,22 @@ public class Map {
 			{'X','X','X','X','X'},
 	};
 	
+	public char[][] lvl4 = {
+			{'X','X','X','X','X'}, 
+			{'X',' ',' ',' ','X'},
+			{'X','X','X',' ',' '},
+			{'X',' ','X','X','X'},
+			{'X','X','X','X','X'},
+	};
+	
+	public char[][] lvl5 = {
+			{'X','X','X','X','X'}, 
+			{'X',' ',' ',' ','X'},
+			{'X','X','X',' ',' '},
+			{'X',' ','X','X','X'},
+			{'X','X','X','X','X'},
+	};
+	
 	public Map(DragonsBane game, int lvl) {	
 		this.game = game;
 		switch(lvl) {
@@ -46,7 +62,13 @@ public class Map {
 			case 3:
 				maze = lvl3;
 				break;
-		}
+			case 4:
+				maze = lvl4;
+				break;
+			case 5:
+				maze = lvl5;
+				break;
+		};
 	}
 	
 	public char[][] getMaze() {

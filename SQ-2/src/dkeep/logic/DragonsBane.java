@@ -25,8 +25,10 @@ public class DragonsBane {
 		this.dragonsCount = dragonsCount;
 		this.map = new Map(this, lvl);
 		this.hero = new Hero(this, 1, 1);
-		if(lvl == 3)
+		if(lvl == 3 || lvl == 5)
 			this.sword = new Sword(this, new Position(1, 2));
+		else if(lvl == 4)
+			this.sword = new Sword(this, new Position(3, 1));
 		else
 			this.sword = new Sword(this, randomSwordPosition());
 		
@@ -39,9 +41,10 @@ public class DragonsBane {
 			this.exit = new Exit(this, 5, 9);
 		}
 		else {
-			if(lvl == 3) {
+			if(lvl == 3)
 				this.dragons.add(new Dragon(this, new Position(2, 3), true));
-			}
+			if(lvl == 5)
+				this.dragons.add(new Dragon(this, new Position(3, 1), true));
 			this.exit = new Exit(this, 2, 4);
 		}
 		
@@ -83,7 +86,7 @@ public class DragonsBane {
 	}
 
 	public boolean checkWinner() {
-		if(hero.getX() == exit.getX() && hero.getY() == exit.getY() && dragonsCount == 0)
+		if(hero.getX() == exit.getX() && hero.getY() == exit.getY() && dragonsCount == 0 && sword.pickedUp)
 			return true;
 		return false;
 			

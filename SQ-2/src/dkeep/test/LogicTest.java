@@ -9,8 +9,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import dkeep.logic.DragonsBane;
-import dkeep.logic.Map;
-import dkeep.logic.*;
 
 public class LogicTest {
 
@@ -165,6 +163,47 @@ public class LogicTest {
 		assertEquals(2, game.hero.getX());
 		assertEquals(4, game.hero.getY());
 		assertTrue(game.checkWinner());
+	}
+	
+	@Test //g)
+	public void testfailWinnerSword() {
+		DragonsBane game = new DragonsBane(0, 4);
+		assertEquals('H', game.hero.getTitle());
+		game.newTurn("d");
+		assertEquals(1, game.hero.getX());
+		assertEquals(2, game.hero.getY());
+		game.newTurn("d");
+		assertEquals(1, game.hero.getX());
+		assertEquals(3, game.hero.getY());
+		game.newTurn("s");
+		assertEquals(2, game.hero.getX());
+		assertEquals(3, game.hero.getY());
+		game.newTurn("d");
+		assertEquals(2, game.hero.getX());
+		assertEquals(4, game.hero.getY());
+		assertFalse(game.checkWinner());
+	}
+	
+	@Test //h)
+	public void testfailWinnerDragon() {
+		DragonsBane game = new DragonsBane(1, 5);
+		assertEquals('H', game.hero.getTitle());
+		assertEquals(1, game.dragonsCount);
+		game.newTurn("d");
+		assertEquals(1, game.hero.getX());
+		assertEquals(2, game.hero.getY());
+		assertEquals('A', game.hero.getTitle());
+		game.newTurn("d");
+		assertEquals(1, game.hero.getX());
+		assertEquals(3, game.hero.getY());
+		game.newTurn("s");
+		assertEquals(2, game.hero.getX());
+		assertEquals(3, game.hero.getY());
+		game.newTurn("d");
+		assertEquals(2, game.hero.getX());
+		assertEquals(4, game.hero.getY());
+		assertEquals(1, game.dragonsCount);
+		assertFalse(game.checkWinner());
 	}
 	
 }
