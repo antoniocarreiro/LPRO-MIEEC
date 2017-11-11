@@ -28,6 +28,7 @@ public class GUI_Window {
 	
 	private int noDragons;
 	private int noLevel;
+	private int noTeleports;
 	private DragonsBane dragonsBane;
 
 	/**
@@ -121,7 +122,19 @@ public class GUI_Window {
 					return;
 				}
 				
-				NewGame(new DragonsBane(noDragons, nrLevel, nrTeleports));
+				try {
+					noTeleports = (Integer) nrTeleports.getValue();
+				} catch (NumberFormatException e) {
+					GameState.setText("Invalid level!");
+					return;
+				}
+
+				if (noTeleports < 0) {
+					GameState.setText("Invalid number of teleports! Must be at least 0.");
+					return;
+				}
+				
+				startGame(new DragonsBane(noDragons, noLevel, noTeleports));
 				
 			}
 		});
@@ -139,6 +152,8 @@ public class GUI_Window {
 		btnUp = new JButton("Up");
 		btnUp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				dragonsBane.newTurn("w");
+				checkGameOver();
 			}
 		});
 		btnUp.setBounds(526, 127, 71, 25);
@@ -159,13 +174,30 @@ public class GUI_Window {
 	
 	}
 	
-	public void NewGame(DragonsBane game)
-	{
-		btnUp.setEnabled(false);
-		btnDown.setEnabled(false);
-		btnLeft.setEnabled(false);
-		btnRight.setEnabled(false);
+	public void startGame(DragonsBane game) {
+		btnUp.setEnabled(true);
+		btnDown.setEnabled(true);
+		btnLeft.setEnabled(true);
+		btnRight.setEnabled(true);
 		dragonsBane = game;
+		dragonsBane.getMap().getPopulatedMaze();
 		GameState.setText("You can now play!");
+	}
+	
+
+	private void checkGameOver() {
+		boolean gameOver = dragonsBane.checkGameOver();
+		boolean winner = dragonsBane.checkWinner();
+		if (gameOver || winner) {
+			btnUp.setEnabled(false);
+			btnDown.setEnabled(false);
+			btnLeft.setEnabled(false);
+			btnRight.setEnabled(false);
+			if (gameOver)
+				GameState.setText("   Game Over!");
+			else
+				GameState.setText("   Victory!");
+	}
 }
+	
 }
