@@ -2,4 +2,4 @@
 ### Content:
 - Here Be Dragons
 - Dragon's Bane
-- The Quest for WYSIWYG (in progress)
+- The Quest for WYSIWYG
