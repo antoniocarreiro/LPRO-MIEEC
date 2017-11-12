@@ -156,6 +156,7 @@ public class GUI_Window {
 		frmTheMazeAnd.getContentPane().add(gameBoard);
 		
 		btnUp = new JButton("Up");
+		btnUp.setEnabled(false);
 		btnUp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				GameState.setText("Hero's attempt to move Up!");
@@ -168,6 +169,7 @@ public class GUI_Window {
 		frmTheMazeAnd.getContentPane().add(btnUp);
 		
 		btnLeft = new JButton("Left");
+		btnLeft.setEnabled(false);
 		btnLeft.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				GameState.setText("Hero's attempt to move Left!");
@@ -181,6 +183,7 @@ public class GUI_Window {
 		frmTheMazeAnd.getContentPane().add(btnLeft);
 		
 		btnRight = new JButton("Right");
+		btnRight.setEnabled(false);
 		btnRight.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				GameState.setText("Hero's attempt to move Right!");
@@ -193,6 +196,7 @@ public class GUI_Window {
 		frmTheMazeAnd.getContentPane().add(btnRight);
 		
 		btnDown = new JButton("Down");
+		btnDown.setEnabled(false);
 		btnDown.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				GameState.setText("Hero's attempt to move Down!");
