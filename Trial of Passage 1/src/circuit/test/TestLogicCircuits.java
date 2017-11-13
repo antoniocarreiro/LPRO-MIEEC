@@ -88,7 +88,7 @@ public class TestLogicCircuits {
 		fieldsArentPublic(LogicGate.class, GateAnd.class, GateOr.class, GateNot.class);
 		isAbstract(LogicGate.class);
 	}
-/*
+
 	@Test
 	public void testCalculatedVariables() throws Exception {
 		LogicVariable X1 = new LogicVariable("X1", false);
@@ -101,7 +101,7 @@ public class TestLogicCircuits {
 		assertSame(null, X2.getCalculatedBy());
 		assertSame(p1, Y1.getCalculatedBy());
 	}
-
+/*
 	// A variable cannot be the output of multiple gates
 	@Test(expected = ColisionException.class)
 	public void testColision() throws Exception {

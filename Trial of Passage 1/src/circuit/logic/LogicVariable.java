@@ -5,6 +5,8 @@ public class LogicVariable {
 	protected String name;
 	protected boolean value;
 	
+	protected LogicGate gate;
+	
 	public LogicVariable(String name, boolean value) {
 		this.name = name;
 		this.value = value;
@@ -30,6 +32,14 @@ public class LogicVariable {
 		this.value = value;
 	}
 	
+	public LogicGate getCalculatedBy() {
+		return gate;
+	}
+
+	public void setCalculatedBy(LogicGate gate) {
+		this.gate = gate;
+	}
+
 	@Override
 	public boolean equals(Object obj) {
 		LogicVariable newObj = (LogicVariable) obj;
