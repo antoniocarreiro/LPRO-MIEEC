@@ -65,7 +65,7 @@ public class TestLogicCircuits {
 		fieldsArentPublic(LogicGate.class, GateAnd.class, GateOr.class, GateNot.class);
 		isAbstract(LogicGate.class);
 	}
-/*
+
 
 	@Test
 	public void testSymbols() throws Exception {
@@ -88,7 +88,7 @@ public class TestLogicCircuits {
 		fieldsArentPublic(LogicGate.class, GateAnd.class, GateOr.class, GateNot.class);
 		isAbstract(LogicGate.class);
 	}
-
+/*
 	@Test
 	public void testCalculatedVariables() throws Exception {
 		LogicVariable X1 = new LogicVariable("X1", false);

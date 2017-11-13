@@ -6,7 +6,6 @@ public class LogicVariable {
 	protected boolean value;
 	
 	public LogicVariable(String name, boolean value) {
-		super();
 		this.name = name;
 		this.value = value;
 	}
