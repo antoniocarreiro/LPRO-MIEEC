@@ -101,7 +101,7 @@ public class TestLogicCircuits {
 		assertSame(null, X2.getCalculatedBy());
 		assertSame(p1, Y1.getCalculatedBy());
 	}
-/*
+
 	// A variable cannot be the output of multiple gates
 	@Test(expected = ColisionException.class)
 	public void testColision() throws Exception {
@@ -178,5 +178,5 @@ public class TestLogicCircuits {
 		assertSame(a, c.getVariableByName("X1"));
 		assertSame(null, c.getVariableByName("X2"));
 	}
-	*/
+	
 }

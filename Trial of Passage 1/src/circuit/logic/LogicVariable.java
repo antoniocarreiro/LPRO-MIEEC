@@ -1,11 +1,12 @@
 package circuit.logic;
 
+
 public class LogicVariable {
 
 	protected String name;
 	protected boolean value;
 	
-	protected LogicGate gate;
+	protected LogicGate gate = null;
 	
 	public LogicVariable(String name, boolean value) {
 		this.name = name;
@@ -40,6 +41,13 @@ public class LogicVariable {
 		this.gate = gate;
 	}
 
+	public String getFormula() {
+		if(gate == null)
+			return name;
+		else
+			return gate.getFormula();
+	}
+	
 	@Override
 	public boolean equals(Object obj) {
 		LogicVariable newObj = (LogicVariable) obj;
