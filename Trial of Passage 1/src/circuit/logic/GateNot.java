@@ -9,7 +9,7 @@ public class GateNot extends LogicGate{
 	public GateNot(LogicVariable w1, LogicVariable i1) throws ColisionException, CycleException{
 		super(w1, i1);
 		this.i1 = i1;
-		this.out = w1;
+
 		this.gateType = "NOT";
 	}
 

@@ -11,7 +11,6 @@ public class GateOr extends LogicGate{
 		super(w1, i1, i2);
 		this.i1 = i1;
 		this.i2 = i2;
-		this.out = w1;
 		this.gateType = "OR";
 		
 	}

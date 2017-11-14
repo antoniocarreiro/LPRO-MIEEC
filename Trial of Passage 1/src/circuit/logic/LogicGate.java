@@ -21,7 +21,7 @@ public abstract class LogicGate {
 	protected LogicVariable out;
 	
 	public LogicVariable getOutput() {
-		return out;
+		return output;
 	}
 	
 	public abstract Object[] getInputs();
