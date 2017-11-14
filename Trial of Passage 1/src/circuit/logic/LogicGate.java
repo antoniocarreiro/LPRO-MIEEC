@@ -14,7 +14,7 @@ public abstract class LogicGate {
 		output.setCalculatedBy(this);
 		
 		for(LogicVariable input : inputs)
-			if(input.getCalculatedBy() == output.gate)
+			if(input.isChild(output))
 				throw new CycleException();
 	}
 	
@@ -38,5 +38,13 @@ public abstract class LogicGate {
 			str = str + inputs[i].getFormula();
 		}
 		return str+")";
+	}
+	
+	public boolean isChild(LogicVariable a) {
+		for (LogicVariable input : inputs) {
+			if(input == a || input.isChild(a))
+				return true;
+		}
+		return false;
 	}
 }

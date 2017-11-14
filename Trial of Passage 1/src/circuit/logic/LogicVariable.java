@@ -42,6 +42,12 @@ public class LogicVariable {
 	public void setCalculatedBy(LogicGate gate) {
 		this.gate = gate;
 	}
+	
+	public boolean isChild(LogicVariable a) {
+		if(gate == null)
+			return false;
+		return gate.isChild(a);
+	}
 
 	public String getFormula() {
 		if(gate == null)
