@@ -4,27 +4,18 @@ package circuit.logic;
 public abstract class LogicGate {
 	
 	protected LogicVariable output;
-	protected LogicVariable[] input;
+	protected LogicVariable[] inputs;
 	
-	public LogicGate(LogicVariable output, LogicVariable input1, LogicVariable input2) throws ColisionException, CycleException {
+	public LogicGate(LogicVariable output, LogicVariable ... inputs) throws ColisionException, CycleException {
 		if(output.getCalculatedBy() != null)
 			throw new ColisionException();
 		this.output = output;
-		this.input[0] = input1;
-		this.input[1] = input2;
+		this.inputs = inputs;
 		output.setCalculatedBy(this);
 		
-		for(LogicVariable input : input)
+		for(LogicVariable input : inputs)
 			if(input.getCalculatedBy() == output.gate)
 				throw new CycleException();
-	}
-	
-	public LogicGate(LogicVariable output, LogicVariable input1) throws ColisionException {
-		if(output.getCalculatedBy() != null)
-			throw new ColisionException();
-		this.output = output;
-		this.input[0] = input1;
-		output.setCalculatedBy(this);
 	}
 	
 	protected LogicVariable out;

@@ -1,6 +1,5 @@
 package circuit.logic;
 
-import java.util.Arrays;
 
 public class CombinatorialCircuit {
 	
