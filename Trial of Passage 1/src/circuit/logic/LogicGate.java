@@ -26,14 +26,16 @@ public abstract class LogicGate {
 	
 	public abstract Object[] getInputs();
 	
+	public abstract boolean getValue();
+	
 	public abstract String getSymbol();
 	
 	public String getFormula() {
 		String str = getSymbol() + "(";
-		for (int i = 0; i < input.length; i++) {
+		for (int i = 0; i < inputs.length; i++) {
 			if(i > 0)
 				str = str + ",";
-			str = str + input[i].getFormula();
+			str = str + inputs[i].getFormula();
 		}
 		return str+")";
 	}

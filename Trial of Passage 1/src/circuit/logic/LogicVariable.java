@@ -26,7 +26,9 @@ public class LogicVariable {
 	}
 
 	public boolean getValue() {
-		return value;
+		if(gate == null)
+			return value;
+		return gate.getValue();
 	}
 
 	public void setValue(boolean value) {

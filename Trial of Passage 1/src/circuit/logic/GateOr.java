@@ -16,8 +16,14 @@ public class GateOr extends LogicGate{
 		
 	}
 	
+	//No need for Override, that's abstract's function. G2K
 	public String getSymbol() {
 		return gateType;
+	}
+	
+	@Override
+	public boolean getValue() {
+		return i1.getValue() || i2.getValue();
 	}
 	
 	@Override
