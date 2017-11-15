@@ -3,4 +3,6 @@
 - Here Be Dragons
 - Dragon's Bane
 - The Quest for WYSIWYG<br /><br />
-- Trial of Passage 1
+- Trial of Passage 1 - Circuits
+- Trial of Passage 1 - Building
+- Trial of Passage 1 - ATM
