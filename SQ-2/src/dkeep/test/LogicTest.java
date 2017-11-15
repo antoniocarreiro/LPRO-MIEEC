@@ -205,7 +205,7 @@ public class LogicTest {
 		assertEquals(1, game.dragonsCount);
 		assertFalse(game.checkWinner());
 	}
-	
+
 	@Test //i)
 	public void testTeletransport() {
 		DragonsBane game = new DragonsBane(1, 6);
