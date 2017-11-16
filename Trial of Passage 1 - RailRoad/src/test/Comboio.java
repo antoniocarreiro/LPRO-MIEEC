@@ -8,11 +8,13 @@ public class Comboio {
 	protected int numLugares;
 	protected int numCarruagens;
 	protected int numPassageiros;
+	protected ServicoABordo servico;
 
 	protected ArrayList<Carruagem> carruagens = new ArrayList<Carruagem>();
 	
 	public Comboio(String nome) {
 		this.nome = nome;
+		this.servico = new ServicoRegular();
 	}
 
 	public String getNome() {
@@ -113,5 +115,32 @@ public class Comboio {
 		else return message + " passageiros";
 	}
 	
+	@Override
+	public boolean equals(Object obj) {
+		Comboio newComboio = (Comboio) obj;
+		if(this.getNumCarruagens() != newComboio.getNumCarruagens())
+			return false;
+		for (int i = 0; i < this.getNumCarruagens(); i++) {
+			if(this.carruagens.get(i).getNumLugares() != newComboio.carruagens.get(i).getNumLugares())
+				return false;
+		}
+		
+		return true;
+	}
+
+	public String getDescricaoServico() {
+		return this.servico.getDescricaoServico();
+	}
+
+	public ServicoABordo getServicoABordo() {
+		return this.servico;
+	}
+
+	public void setServicoABordo(ServicoABordo servico) {
+		this.servico = servico;
+		
+	}
+
+
 	
 }

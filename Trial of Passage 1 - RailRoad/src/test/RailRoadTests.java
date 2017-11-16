@@ -137,7 +137,7 @@ public class RailRoadTests  {
 	//  Dois comboios sao considerados iguais se tiverem 
 	// sequencias de carruagens com a mesma capacidade
 	 //
-/*	@Test
+	@Test
 	public void testComboiosIguais() {
 		Comboio c1 = new Comboio("C1");
 		Comboio c2 = new Comboio("C2");
@@ -160,7 +160,7 @@ public class RailRoadTests  {
 		assertFalse(c1.equals(c2));
 	}
 	
-
+	
 	@Test
 	public void testServicoABordo() {		
 		// Os comboios normais teem por defeito o servico regular
@@ -185,5 +185,5 @@ public class RailRoadTests  {
 		c1.setServicoABordo(new ServicoPrioritario());
 		assertEquals("Servico prioritario.",c1.getDescricaoServico());
 	}
-	*/
+	
 }
