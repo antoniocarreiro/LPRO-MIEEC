@@ -6,3 +6,4 @@
 - Trial of Passage 1 - Circuits
 - Trial of Passage 1 - Building
 - Trial of Passage 1 - ATM
+- Trial of Passage 1 - Geometry
