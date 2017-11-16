@@ -34,7 +34,8 @@ public class Room implements Facility{
 		this.floor = floor;
 		this.capacity = capacity;
 		
-		for(Room room : this.building.rooms)
+		
+		for(Room room : this.getBuilding().rooms)
 			if(this.equals(room))
 				throw new DuplicateRoomException();
 		
